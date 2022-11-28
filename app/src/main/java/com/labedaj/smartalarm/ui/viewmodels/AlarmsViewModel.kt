@@ -1,15 +1,12 @@
 package com.labedaj.smartalarm.ui.viewmodels
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.labedaj.smartalarm.data.AlarmRepository
 import com.labedaj.smartalarm.data.models.Alarm
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+
 
 @HiltViewModel
 class AlarmsViewModel @Inject constructor(
@@ -25,9 +22,9 @@ class AlarmsViewModel @Inject constructor(
 
     private fun loadAlarms() {
         viewModelScope.launch {
-            repository.getAllAlarms().collect {
-                _alarms.postValue(it)
-            }
+            repository.getAllAlarms().collect{ listOfAlarms ->
+                _alarms.value = listOfAlarms
+           }
         }
     }
 

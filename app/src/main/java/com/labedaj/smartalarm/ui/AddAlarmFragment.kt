@@ -72,6 +72,7 @@ class AddAlarmFragment : Fragment() {
             }
             popupMenu.show()
         }
+
         binding.selectAlarmButton.setOnClickListener(alarmSelectListener)
         binding.alarmSoundText.setOnClickListener(alarmSelectListener)
 
